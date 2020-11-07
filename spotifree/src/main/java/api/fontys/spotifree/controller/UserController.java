@@ -5,10 +5,13 @@ import api.fontys.spotifree.entity.User;
 import api.fontys.spotifree.service.MyUserDetailService;
 import api.fontys.spotifree.utilities.JwtUtil;
 
+import java.io.Console;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @ControllerAdvice
 public class UserController {
@@ -31,6 +34,7 @@ public class UserController {
     @Autowired
     private MyUserDetailService service;
 
+    
     @PostMapping("/addUser")
     public User addUser(@RequestBody User user) {
         return service.addUser(user);
