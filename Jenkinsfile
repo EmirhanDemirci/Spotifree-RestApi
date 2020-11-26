@@ -1,6 +1,6 @@
 node{
     stage('SCM Checkout' ) {
-      git 'https://github.com/EmirhanDemirci/Spotifree-RestApi'
+      git 'https://github.com/EmirhanDemirci/Spotifree-RestApi/spotifree'
     }
     stage('Compile-Package') {
         // Get maven home path
