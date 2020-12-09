@@ -5,8 +5,6 @@ import api.fontys.spotifree.entity.User;
 import api.fontys.spotifree.service.MyUserDetailService;
 import api.fontys.spotifree.utilities.JwtUtil;
 
-import java.io.Console;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
