@@ -14,10 +14,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @Configuration
 @EnableWebSecurity
@@ -34,6 +36,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userService);
         auth.authenticationProvider(authProvider());
     }
+
+    // @Bean
+    // public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
+    //     http.authorizeExchange().anyExchange().permitAll();
+    //     return http.build();
+    // }
+
     @Bean
 	public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
