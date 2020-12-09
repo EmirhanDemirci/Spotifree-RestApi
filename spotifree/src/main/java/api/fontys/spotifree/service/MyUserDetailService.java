@@ -28,9 +28,9 @@ public class MyUserDetailService implements UserDetailsService {
         return repository.save(user);
     }
 
-    public User getUser(int id) {
+    public User getUser(String name) {
 
-        return repository.findById(id).orElse(null);
+        return repository.findByUsername(name);
     }
     
     public String deleteUser(int id) {

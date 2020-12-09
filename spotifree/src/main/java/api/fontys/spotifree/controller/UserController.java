@@ -41,7 +41,7 @@ public class UserController {
     }
 
     @GetMapping("/getUser/{id}")
-    public User getUser(@PathVariable int id) {
+    public User getUser(@PathVariable String id) {
         return service.getUser(id);
     }
     @DeleteMapping("/delete/{id}")
