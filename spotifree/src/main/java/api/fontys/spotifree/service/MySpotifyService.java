@@ -1,11 +1,16 @@
 package api.fontys.spotifree.service;
+import java.io.Console;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.core.JsonParser;
+
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -16,7 +21,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import api.fontys.spotifree.entity.SpotifyEntities.album;
+import api.fontys.spotifree.entity.SpotifyEntities.Root;
+import api.fontys.spotifree.entity.SpotifyEntities.Root2;
 import api.fontys.spotifree.interfaces.ISpotifyService;
 
 @Service
@@ -28,24 +34,24 @@ public class MySpotifyService implements ISpotifyService {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-	public album getAlbum(String ids) {
+	public Root2 getAlbum(String ids) {
         String url = "https://api.spotify.com/v1/albums";
-        String BearerSpotify = "Bearer BQAycfE_Xd_8OevTgrnr9tANO6GPzuVHdqvVc-blcFyu0PnU9XrNNsg5Ak6kzMHUl80JBNRiDP8klCYAnlpJAEc2LOoG9QoatYBl32tilCsruKlOWCeay57WLMwkdAsjHXUS6p98Vb8qUwhD5xBm5CZ8Qg7P6yHIEpo3zn7Hdp3NtIbUMn55e4rlvlxJq3XZp4qcB37tTUOs1Vcg_oaCAhg0pPd5x0wi6VyBzN2Qurhpdmkr0OV5WIWDRSE3QfErH3L2AZ9MNLCwqzJ9";
+        String BearerSpotify = "Bearer BQB4MskkH-tNcl4eOKgKqY0JPKKml-mCjSWUfTVB9guCMiqECXSPW0wuQPsShNW07m0kOJKz5QdP2PhkIfpsLAS_PCezI1XmRWeiz8OqnDDvubATT_A55Z4pujIvvoE4yYyt9bgqkybjLsDptfZDhrQSyMZ1dSGPeGSpcvZ7qKE_cIC_lqQjIX0A-CNq9EOTkUPeErF4QESSS7K-WvqqG5fjqCX4WM4d0K6jsHunLkzHmpy9bjx6nNSGHbKWg48Ruapqrorr4aSZLoAC";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url).queryParam("ids", ids);
         headers.set(HttpHeaders.AUTHORIZATION, BearerSpotify);
         
-        HttpEntity<album[]> request = new HttpEntity<album[]>(headers);
+        HttpEntity<Root[]> request = new HttpEntity<Root[]>(headers);
         // build the request
         try {
             
             // use `exchange` method for HTTP call
-            ResponseEntity<album> response = this.restTemplate.exchange(builder.toUriString(), HttpMethod.GET, request, album.class, ids);
+            ResponseEntity<Root2> response = this.restTemplate.exchange(builder.toUriString(), HttpMethod.GET, request, Root2.class, ids);
             if(response.getStatusCode() == HttpStatus.OK) {
-                album albums = response.getBody();
-                return albums;
+                Root2 body = response.getBody();
+                return body;
             }
             else 
             {

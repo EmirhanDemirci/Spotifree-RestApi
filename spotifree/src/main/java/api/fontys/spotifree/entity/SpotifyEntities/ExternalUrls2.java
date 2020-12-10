@@ -1,5 +1,5 @@
 package api.fontys.spotifree.entity.SpotifyEntities;
 
-public class restriction {
-    private String reason;
+public class ExternalUrls2{
+    public String spotify;
 }
