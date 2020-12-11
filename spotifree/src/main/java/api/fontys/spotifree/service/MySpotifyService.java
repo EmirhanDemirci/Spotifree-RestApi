@@ -31,7 +31,7 @@ public class MySpotifyService implements ISpotifyService {
     private final RestTemplate restTemplate;
 
     String url = "https://api.spotify.com/v1/";
-    String BearerSpotify = "Bearer BQASj1fAAG6xdv3Z6xkmdS5W0Fd1Tcq9Q69U3BV0dB7BZKdMM6qee94IePZIEplRP-1F8FTc8V6_Ysl6thPnoYsit2A6QxN94-aXszeCFcSRkmDnmroCwxiZW5OdWQ-WNnbZdZvjBtCwbAfSlyIm5fE17hSbN70ahWp2Ctg2-BrhqUevP250IIaSpVZpEyyUS4kBf6YgPJqjlVPXPaebBHvAER0o3N_FOtp5q5fuUH3TASrTock5r_FgD13hP7H4OtJ7N4_k6HyxGR2V";
+    String BearerSpotify = "Bearer BQCkzVGl2F8iJBFRcfOyCuvrr1F7ysU1TAGpQuusE_x4Ow_FPrZLzg_JxazBcobjcNuUClG82woiGM0Yf5twXnz6Q4mEX3unixIbM1WwNBG7GtedfXhS7r8hs0G7tKpZRi2cQ1jBVQiddhReSENQoyKFo2cRsLX6zcgqFSIq_LxO7hiHTYLBnjf7LtzNzEvSw2qm8Ijg7rPggtapeSEYYXFey750unwmsRw--5FvYQBa63mDRN8FPl7fUChviYcYsncRCk2-gBEyKnLy";
 
     public MySpotifyService(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
