@@ -22,44 +22,72 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import api.fontys.spotifree.entity.SpotifyEntities.Root;
-import api.fontys.spotifree.entity.SpotifyEntities.Root2;
+import api.fontys.spotifree.entity.SpotifyEntities.RootSpotify;
 import api.fontys.spotifree.interfaces.ISpotifyService;
 
 @Service
 public class MySpotifyService implements ISpotifyService {
 
     private final RestTemplate restTemplate;
-    
+
+    String url = "https://api.spotify.com/v1/";
+    String BearerSpotify = "Bearer BQASj1fAAG6xdv3Z6xkmdS5W0Fd1Tcq9Q69U3BV0dB7BZKdMM6qee94IePZIEplRP-1F8FTc8V6_Ysl6thPnoYsit2A6QxN94-aXszeCFcSRkmDnmroCwxiZW5OdWQ-WNnbZdZvjBtCwbAfSlyIm5fE17hSbN70ahWp2Ctg2-BrhqUevP250IIaSpVZpEyyUS4kBf6YgPJqjlVPXPaebBHvAER0o3N_FOtp5q5fuUH3TASrTock5r_FgD13hP7H4OtJ7N4_k6HyxGR2V";
+
     public MySpotifyService(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-	public Root2 getAlbum(String ids) {
-        String url = "https://api.spotify.com/v1/albums";
-        String BearerSpotify = "Bearer BQB4MskkH-tNcl4eOKgKqY0JPKKml-mCjSWUfTVB9guCMiqECXSPW0wuQPsShNW07m0kOJKz5QdP2PhkIfpsLAS_PCezI1XmRWeiz8OqnDDvubATT_A55Z4pujIvvoE4yYyt9bgqkybjLsDptfZDhrQSyMZ1dSGPeGSpcvZ7qKE_cIC_lqQjIX0A-CNq9EOTkUPeErF4QESSS7K-WvqqG5fjqCX4WM4d0K6jsHunLkzHmpy9bjx6nNSGHbKWg48Ruapqrorr4aSZLoAC";
+	public RootSpotify getAlbum(String ids) {
+       
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url).queryParam("ids", ids);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url + "albums").queryParam("ids", ids);
         headers.set(HttpHeaders.AUTHORIZATION, BearerSpotify);
-        
         HttpEntity<Root[]> request = new HttpEntity<Root[]>(headers);
-        // build the request
-        try {
-            
+
+        try
+        {
             // use `exchange` method for HTTP call
-            ResponseEntity<Root2> response = this.restTemplate.exchange(builder.toUriString(), HttpMethod.GET, request, Root2.class, ids);
+            ResponseEntity<RootSpotify> response = this.restTemplate.exchange(builder.toUriString(), HttpMethod.GET, request, RootSpotify.class, ids);
             if(response.getStatusCode() == HttpStatus.OK) {
-                Root2 body = response.getBody();
+                RootSpotify body = response.getBody();
                 return body;
             }
             else 
             {
                 return null;
             }
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             throw e;
         }   
-       
-	}
+    }
+    
+    public RootSpotify getArtist(String id) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url + "artists/" + id);
+        headers.set(HttpHeaders.AUTHORIZATION, BearerSpotify);
+        HttpEntity<Root[]> request = new HttpEntity<Root[]>(headers);
+
+        try
+        {
+            // use `exchange` method for HTTP call
+            ResponseEntity<String> response = this.restTemplate.exchange(builder.toUriString(), HttpMethod.GET, request, String.class);
+            if(response.getStatusCode() == HttpStatus.OK) {
+                String body = response.getBody();
+                System.out.println(body);
+                return new RootSpotify();
+            }
+            else 
+            {
+                return null;
+            }
+        } 
+        catch (Exception e) {
+            throw e;
+        }   
+    }
 }
