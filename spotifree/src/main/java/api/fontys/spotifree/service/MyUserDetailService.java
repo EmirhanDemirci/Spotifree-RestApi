@@ -6,7 +6,6 @@ import api.fontys.spotifree.entity.User;
 import api.fontys.spotifree.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,15 +13,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 public class MyUserDetailService implements UserDetailsService {
 
-    private final RestTemplate restTemplate;
 
-    public MyUserDetailService(RestTemplateBuilder restTemplateBuilder) {
-        this.restTemplate = restTemplateBuilder.build();
+    public MyUserDetailService() {
     }
 
 	@Autowired
