@@ -9,6 +9,7 @@ public class WrapperMethod implements IWrapper {
     public WrapperMethod(IWrapper wrapper) {
         _wrapper = wrapper;
     }
+    
 	@Override
 	public User UserAuthenticate(User user) {
         _wrapper.UserAuthenticate(user);

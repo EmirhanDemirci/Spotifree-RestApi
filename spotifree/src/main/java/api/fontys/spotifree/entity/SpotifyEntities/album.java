@@ -3,14 +3,14 @@ package api.fontys.spotifree.entity.SpotifyEntities;
 import java.io.Serializable;
 
 
-public class album implements Serializable {
+public class Album implements Serializable {
 	private String album_group;
     private String album_type;
-    private artist artists;
+    private Artist artists;
     private String[] available_markets;
     private String href;
     private String id;
-    private image images;
+    private Image images;
     private String name;
     private String release_date;
     private String release_date_precision;
@@ -57,10 +57,10 @@ public class album implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public image getImages() {
+	public Image getImages() {
 		return images;
 	}
-	public void setImages(image images) {
+	public void setImages(Image images) {
 		this.images = images;
 	}
 	public String getId() {
@@ -81,10 +81,10 @@ public class album implements Serializable {
 	public void setAvailable_markets(String[] available_markets) {
 		this.available_markets = available_markets;
 	}
-	public artist getArtists() {
+	public Artist getArtists() {
 		return artists;
 	}
-	public void setArtists(artist artists) {
+	public void setArtists(Artist artists) {
 		this.artists = artists;
 	}
 	public String getAlbum_type() {

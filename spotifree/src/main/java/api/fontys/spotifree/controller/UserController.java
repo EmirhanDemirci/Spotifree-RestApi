@@ -2,7 +2,6 @@ package api.fontys.spotifree.controller;
 
 import api.fontys.spotifree.entity.AuthRequest;
 import api.fontys.spotifree.entity.User;
-import api.fontys.spotifree.entity.SpotifyEntities.album;
 import api.fontys.spotifree.service.MySpotifyService;
 import api.fontys.spotifree.service.MyUserDetailService;
 import api.fontys.spotifree.utilities.JwtUtil;
