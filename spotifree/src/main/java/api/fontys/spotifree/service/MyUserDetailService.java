@@ -8,13 +8,8 @@ import api.fontys.spotifree.entity.SpotifyEntities.album;
 import api.fontys.spotifree.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -44,9 +39,10 @@ public class MyUserDetailService implements UserDetailsService {
         return repository.save(user);
     }
 
-    public User getUser(int id) {
-
-        return repository.findById(id).orElse(null);
+    public User getUser(String name) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        auth.getPrincipal();
+        return repository.findByUsername(name);
     }
     
     public String deleteUser(int id) {

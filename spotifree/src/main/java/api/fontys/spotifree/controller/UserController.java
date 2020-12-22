@@ -7,8 +7,6 @@ import api.fontys.spotifree.service.MySpotifyService;
 import api.fontys.spotifree.service.MyUserDetailService;
 import api.fontys.spotifree.utilities.JwtUtil;
 
-import java.io.Console;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -42,7 +40,7 @@ public class UserController {
     }
 
     @GetMapping("/getUser/{id}")
-    public User getUser(@PathVariable int id) {
+    public User getUser(@PathVariable String id) {
         return service.getUser(id);
     }
     @DeleteMapping("/delete/{id}")
