@@ -35,8 +35,6 @@ public class UserController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private MyUserDetailService service;
-    @Autowired
-    private MySpotifyService spotifyService;
     
     @PostMapping("/addUser")
     public User addUser(@RequestBody User user) {
