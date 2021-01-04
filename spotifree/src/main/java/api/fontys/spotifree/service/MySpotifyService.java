@@ -22,6 +22,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import api.fontys.spotifree.entity.SpotifyEntities.Root;
+import api.fontys.spotifree.entity.SpotifyEntities.RootArtist;
 import api.fontys.spotifree.entity.SpotifyEntities.RootSpotify;
 import api.fontys.spotifree.interfaces.ISpotifyService;
 
@@ -31,7 +32,7 @@ public class MySpotifyService implements ISpotifyService {
     private final RestTemplate restTemplate;
 
     String url = "https://api.spotify.com/v1/";
-    String BearerSpotify = "Bearer BQAmej8LzAT8qFcS4z-kAAPJpXge9-jzwmSmqrAKFcw_v4xK7sL4Zl3STzbDbv7mA-btCK2Lwm7YGklNy9bl6M0Xct7UWgYPLwURJY98_XRL1bcMaqU-ambKOg-FmZ0X_H76E2w24MKfJ4tTm3IAPzI0PfQNpTTc1h3jhyHp51gnwuoVNs_p4NpfzqlGt9BBUuQ72ZseDJ2FkqIu08S8Ysw0q_iOMGGFLvh_Xo43JYiqZ1ZLp3cGoI9lhvIT-J2xzzqZBR2t7ANH1Zhu";
+    String BearerSpotify = "Bearer BQDakNmKQaE51eZgSEPwUKluhT3ZFeZMdx5pWE2wj_Ob1rBvdF9QH58F4kEW_NSZhu8jssSUMvaAV0ksFoRXZd64gBk3fD8Gxfmm5PuSaB2dhFdIg_nAJKgWWpRbUtLL6h6ucW6TbHcyfv5sb6xoyjk_NRnRr4fg36gQ4NuogrvqazEEEZzE5tLPN60hZ4zXaJI1dUHzm7v18Ctx4YWlW9K8vnUHzkV48tM9O4A4_CV-lU1soHkFhDbA6Lf3EHDsKJetRfFW_QV_99Us";
 
     public MySpotifyService(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
@@ -64,7 +65,7 @@ public class MySpotifyService implements ISpotifyService {
         }   
     }
     
-    public RootSpotify getArtist(String id) {
+    public RootArtist getArtist(String id) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
@@ -75,11 +76,10 @@ public class MySpotifyService implements ISpotifyService {
         try
         {
             // use `exchange` method for HTTP call
-            ResponseEntity<String> response = this.restTemplate.exchange(builder.toUriString(), HttpMethod.GET, request, String.class);
+            ResponseEntity<RootArtist> response = this.restTemplate.exchange(builder.toUriString(), HttpMethod.GET, request, RootArtist.class);
             if(response.getStatusCode() == HttpStatus.OK) {
-                String body = response.getBody();
-                System.out.println(body);
-                return new RootSpotify();
+                RootArtist body = response.getBody();
+                return body;
             }
             else 
             {

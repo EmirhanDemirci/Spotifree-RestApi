@@ -21,6 +21,9 @@ public class Root {
 
     @JsonProperty("copyrights")
     public List<Copyright> copyrights;
+    
+    @JsonProperty("followers")
+    public List<Followers> followers;
 
     @JsonProperty("external_ids")
     public ExternalIds external_ids;

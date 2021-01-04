@@ -47,6 +47,7 @@ public class HttpRequestTests {
     @MockBean
     private UserRepository UserRepository;
 
+
     @Test
     public void AuthenticateUserInWrapperTest() {
         Wrapper wrapper = new Wrapper();
