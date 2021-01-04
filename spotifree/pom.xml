@@ -66,28 +66,14 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
+		
 		<dependency>
-			<groupId>org.jenkins-ci.plugins.workflow</groupId>
-			<artifactId>workflow-basic-steps</artifactId>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version> 
 			<scope>test</scope>
-		  </dependency>
-		  <dependency>
-			<groupId>org.jenkins-ci.plugins.workflow</groupId>
-			<artifactId>workflow-cps</artifactId>
-			<scope>test</scope>
-		  </dependency>
-		  <dependency>
-			<groupId>org.jenkins-ci.plugins.workflow</groupId>
-			<artifactId>workflow-durable-task-step</artifactId>
-			<scope>test</scope>
-		  </dependency>
-		  <dependency>
-			<groupId>org.jenkins-ci.plugins.workflow</groupId>
-			<artifactId>workflow-job</artifactId>
-			<scope>test</scope>
-		  </dependency>
-
+		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
