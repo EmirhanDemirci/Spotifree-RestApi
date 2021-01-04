@@ -14,7 +14,7 @@ public class Album implements Serializable {
     private String name;
     private String release_date;
     private String release_date_precision;
-    private restriction restrictions;
+    private Restriction restrictions;
     private String type;
     private String uri;
 
@@ -33,10 +33,10 @@ public class Album implements Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public restriction getRestrictions() {
+	public Restriction getRestrictions() {
 		return restrictions;
 	}
-	public void setRestrictions(restriction restrictions) {
+	public void setRestrictions(Restriction restrictions) {
 		this.restrictions = restrictions;
 	}
 	public String getRelease_date_precision() {

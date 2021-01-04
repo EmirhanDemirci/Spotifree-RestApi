@@ -1,5 +1,5 @@
 package api.fontys.spotifree.entity.SpotifyEntities;
 
-public class restriction {
+public class Restriction {
     private String reason;
 }
