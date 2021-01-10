@@ -24,9 +24,9 @@ public class SpotifyController {
         return service.getAlbum(ids);
     }
     
-    @RequestMapping("/getArtist/{id}")
-    public RootArtist getArtist(@PathVariable String id) {
-        return service.getArtist(id);
+    @RequestMapping("/getArtist")
+    public RootArtist getArtist(@RequestParam String ids) {
+        return service.getArtist(ids);
     }
     
 }

@@ -22,6 +22,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import api.fontys.spotifree.entity.SpotifyEntities.Root;
+import api.fontys.spotifree.entity.SpotifyEntities.Root2;
 import api.fontys.spotifree.entity.SpotifyEntities.RootArtist;
 import api.fontys.spotifree.entity.SpotifyEntities.RootSpotify;
 import api.fontys.spotifree.interfaces.ISpotifyService;
@@ -32,7 +33,7 @@ public class MySpotifyService implements ISpotifyService {
     private final RestTemplate restTemplate;
 
     String url = "https://api.spotify.com/v1/";
-    String BearerSpotify = "Bearer BQDakNmKQaE51eZgSEPwUKluhT3ZFeZMdx5pWE2wj_Ob1rBvdF9QH58F4kEW_NSZhu8jssSUMvaAV0ksFoRXZd64gBk3fD8Gxfmm5PuSaB2dhFdIg_nAJKgWWpRbUtLL6h6ucW6TbHcyfv5sb6xoyjk_NRnRr4fg36gQ4NuogrvqazEEEZzE5tLPN60hZ4zXaJI1dUHzm7v18Ctx4YWlW9K8vnUHzkV48tM9O4A4_CV-lU1soHkFhDbA6Lf3EHDsKJetRfFW_QV_99Us";
+    String BearerSpotify = "Bearer BQC16_lzj1cVdnGBXuiwatGBXvK0e20ekxc7fyuV2et4SQclQKzqwVEXfk1IfKjvkGEXJdeezH62EASdbvfTfR7D9_hV0ut8IlNVr8cYF1YgFeKSAv65UO9SZvUDcyek8EgqepIwUrrhzinwnGxnqNUmCfeftwoqH2oi3d3_e2mmdhpmbIaT6L0ZJJskdRdW_7M_Q5FNwEhRiQoh1q9K9ju2X4jnM3LoUZ3tSxnYGaqg0U4K93b3WZZGu4LBoh12JyY9eDzyPzPgS0B1";
 
     public MySpotifyService(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
@@ -65,18 +66,18 @@ public class MySpotifyService implements ISpotifyService {
         }   
     }
     
-    public RootArtist getArtist(String id) {
+    public RootArtist getArtist(String ids) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url + "artists/" + id);
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url + "artists/").queryParam("ids", ids);
         headers.set(HttpHeaders.AUTHORIZATION, BearerSpotify);
-        HttpEntity<Root[]> request = new HttpEntity<Root[]>(headers);
+        HttpEntity<Root2[]> request = new HttpEntity<Root2[]>(headers);
 
         try
         {
             // use `exchange` method for HTTP call
-            ResponseEntity<RootArtist> response = this.restTemplate.exchange(builder.toUriString(), HttpMethod.GET, request, RootArtist.class);
+            ResponseEntity<RootArtist> response = this.restTemplate.exchange(builder.toUriString(), HttpMethod.GET, request, RootArtist.class, ids);
             if(response.getStatusCode() == HttpStatus.OK) {
                 RootArtist body = response.getBody();
                 return body;
